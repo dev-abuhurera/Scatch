@@ -1,5 +1,7 @@
 # Bag Brand - Full Stack E-Commerce Platform
 
+<img width="1920" height="750" alt="image" src="https://github.com/user-attachments/assets/b1160957-6f12-43c0-8bcf-3c49a912f373" />
+
 A full-stack e-commerce application for a bag brand, built from scratch using Node.js, Express, MongoDB, EJS, and Tailwind CSS. Features secure authentication, role-based access control, and follows best practices for scalable web development.
 
 ## 📋 Project Overview
