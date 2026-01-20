@@ -26,6 +26,11 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+        maxAge: 24 * 60 * 60 * 1000 // 24 hrs
+    }
+
 }))
 
 app.use(express.static(path.join(__dirname, "public")));
