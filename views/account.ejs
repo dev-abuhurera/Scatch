@@ -36,7 +36,7 @@
                     <h2 class="text-xl font-semibold mb-4">Profile Picture</h2>
 
                     <div class="flex flex-col items-center">
-                        <img src="<%= user.picture %>" alt="Profile Picture"class="w-40 h-40 rounded object-cover border-4 border-gray-200 mb-2">
+                        <img src="<%= user.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&size=160&background=ddd&color=555` %>" alt="Profile Picture"class="w-40 h-40 rounded object-cover border-4 border-gray-200 mb-2">
 
                         <form action="/account/update-profile" method="POST" enctype="multipart/form-data" class="w-full">
 
@@ -57,7 +57,7 @@
                         </form>       
                     </div>
                 </div>
-
+                
             </div>
 
          <!-- Account Information Section -->

@@ -48,7 +48,9 @@ router.post("/create",isOwnerLoggedIn,upload.single("image"),async (req, res) =>
 
       req.flash("success", "Product created successfully");
       res.redirect("/owners/admin");
-    } catch (err) {
+
+      } catch (err) {
+
       console.error("PRODUCT CREATE ERROR:", err.message);
       console.error(err.errors || err);
       return res.status(500).json({
@@ -56,8 +58,9 @@ router.post("/create",isOwnerLoggedIn,upload.single("image"),async (req, res) =>
         error: err.message,
         details: err.errors,
       });
+
     }
-    console.log(Object.keys(cloudinary.uploader || {}));
+    
   }
   
 
