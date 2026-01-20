@@ -137,9 +137,11 @@ router.get("/admin",isOwnerLoggedIn, async (req, res) => {
 
 
 router.get("/admin/create", isOwnerLoggedIn, (req, res) => {
+    
     let success = req.flash("success");
     let error = req.flash("error");
     res.render("createproducts", {success, error});
+
 });
 
 module.exports = router;
