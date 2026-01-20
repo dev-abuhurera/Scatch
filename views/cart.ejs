@@ -37,15 +37,17 @@
                             <!-- Product Image & Info -->
                             <div class="md:w-48 w-full flex-shrink-0">
 
-                                <div class="w-full h-40 md:h-48 flex items-center justify-center p-3" style="background-color: <%= item.bgcolor %>;">
-                                    <img class="h-full w-full object-contain" src="data:image/jpeg;base64, <%= item.image.toString('base64')%>" alt="<%= item.name %>">
+                                <div class="w-full h-40 md:h-48 flex items-center justify-center p-3"
+                                     style="background: linear-gradient(to right, <%= item.bgcolor.join(', ') %>);">
+                                    <img class="h-full w-full object-contain" src="<%= item.image %>" alt="<%= item.name %>">
                                 </div>
-
-                                <div class="w-full px-3 py-2" style="background-color: <%= item.panelcolor %>; color: <%= item.textcolor %>;">
+                            
+                                <div class="w-full px-3 py-2"
+                                     style="background: linear-gradient(to right, <%= item.panelcolor.join(', ') %>); color: <%= item.textcolor[0] %>;">
                                     <h3 class="text-base md:text-lg font-semibold mb-1 truncate"><%= item.name %></h3>
                                     <p class="text-xs md:text-sm opacity-80">₹<%= Number(item.price) - Number(item.discount || 0) %> each</p>
                                 </div>
-
+                            
                             </div>
 
                             <!-- Product Details -->
