@@ -1,14 +1,28 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose"); 
+require('dotenv').config();
 const config = require("config");
-const dbgr = require("debug") ("development:mongoose");
+const dbgr = require("debug")("development:mongoose");
 
-mongoose.connect(`${config.get("MONGODB_URI")}/scatch`)
-.then(function(){
-    dbgr("connected");
-})
-.catch(function(err){
-    dbgr(err);
-})
+const dbURI = process.env.MONGODB_URI;
+
+
+const connectDb = async () => {
+    
+    await mongoose.connect(`${dbURI}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        serverSelectionTimeoutMS: 30000
+        
+    }).then(function(){
+        dbgr("connected");
+    })
+    .catch(function(err){
+        dbgr(err);
+    })
+    
+}
+
+connectDb();
+
 
 module.exports = mongoose.connection;
-

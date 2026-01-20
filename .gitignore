@@ -1,2 +1,9 @@
-node_modules
+node_modules/
 .env
+.env.local
+.env.production
+config/production.json
+config/local.json
+public/images/*.png
+public/images/*.jpg
+!public/images/.gitkeep

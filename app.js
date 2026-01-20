@@ -5,9 +5,11 @@ const expressSession = require("express-session");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 require("dotenv").config();
-const db = require("./config/mongoose-connection");
-const swal = require('sweetalert');
+const mongoose = require('mongoose');
+const port = process.env.PORT || 3000;
 
+
+mongoose.connect(process.env.MONGODB_URI).then(console.log("Connected Mongodb"));
 
 const ownersRouter = require("./routes/ownersRouter");
 const usersRouter = require("./routes/usersRouter");
@@ -37,4 +39,4 @@ app.use("/products", productsRouter);
 app.use("/account", accountRouter);
 app.use("/", orderRouter);
 
-app.listen(3000);
+app.listen(port); 
