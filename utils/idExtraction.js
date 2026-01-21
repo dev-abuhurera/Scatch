@@ -1,6 +1,6 @@
 // It will help us extract the public_id from the cloudinary
 
-export function extractPublicId(imageUrl){
+module.exports =  function extractPublicId(imageUrl){
 
     if(!imageUrl || typeof imageUrl !== "string") return null;
 

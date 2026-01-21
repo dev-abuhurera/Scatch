@@ -8,7 +8,6 @@ const imageId = require('../utils/idExtraction');
 
 router.post("/create",isOwnerLoggedIn,upload.single("image"),async (req, res) => {
 
-  
     try {
 
       const { name, price, discount, bgcolor, panelcolor, textcolor } = req.body;
@@ -102,11 +101,15 @@ router.post("/delete/:productId", isOwnerLoggedIn, async (req, res) => { // Prod
         const productId = imageId(product.image);
 
         if(productId){
+
           cloudinary.uploader.destroy(productId);
+
         }
+
       }catch(err){
         
         req.flash("error", "Failed to delete the image")
+        return res.redirect("/owners/admin");
 
       }
 
@@ -117,6 +120,7 @@ router.post("/delete/:productId", isOwnerLoggedIn, async (req, res) => { // Prod
 
 
   } catch (err){
+
     req.flash("error", "Failed to delete the product");
     return res.redirect("/owners/admin");
 
@@ -129,7 +133,39 @@ router.post("/deleteall", isOwnerLoggedIn, async (req, res) => { // delete all t
 
   try{
 
-    await productModel.deleteMany({});
+     // Get all products first to access their images
+    const products = await productModel.find({});
+
+    if(!products){
+
+      req.flash("error", "Products not found");
+      return res.redirect("/owners/admin");
+
+    }
+
+    await productModel.deleteMany({}); // removed all the products from here 
+
+    if(products.image){
+
+      try{
+
+        const publicIds = imageId(products.image);
+
+        if(publicIds){
+
+          await cloudinary.uploader.destroy(publicIds);
+
+        }
+
+      } catch(err){
+
+        req.flash("error","Unable to delete")
+
+      }
+
+    }
+
+
     req.flash("success", "All products deleted successfully");
     return es.redirect("/owners/admin");
 
