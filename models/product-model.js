@@ -13,17 +13,17 @@ const productSchema = new mongoose.Schema({
 
     bgcolor:{
         type:String,
-        required: true
+        
     },
     
     panelcolor:{
         type:String,
-        required: true
+    
     },
 
     textcolor:{
         type:String,
-        required: true
+       
     },
 
     owner: {
