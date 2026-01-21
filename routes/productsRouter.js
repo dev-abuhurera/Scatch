@@ -34,6 +34,7 @@ router.post("/create",isOwnerLoggedIn,upload.single("image"),async (req, res) =>
         });
 
         imageUrl = uploadResult.secure_url;
+        uploadedPublicId = uploadResult.public_id; // this we will use in the delete session 
       }
 
       await productModel.create({
@@ -52,10 +53,19 @@ router.post("/create",isOwnerLoggedIn,upload.single("image"),async (req, res) =>
       } catch (err) {
 
         console.error("PRODUCT CREATE ERROR:", err.message);
+        // Thus now the image will automatically being destroyed by the cloudinary 
+
+        if (uploadedPublicId) {
+          try {
+            await cloudinary.uploader.destroy(uploadedPublicId);
+            console.log("Cleaned up uploaded image:", uploadedPublicId);
+          } catch (deleteErr) {
+            console.error("Failed to delete image:", deleteErr.message);
+          }
+        }
+
         console.error(err.errors || err);
         req.flash('error', 'Error creating product: ' + err.message);
-        return res.redirect('/owners/admin'); 
-
     }
     
   }
@@ -71,8 +81,12 @@ router.post("/delete/:productId", isOwnerLoggedIn, async (req, res) => { // Prod
 
     const { productId } = req.params;
     await productModel.findByIdAndDelete(productId); // ProductModel will find the id and delete the product of that id
+
+    
+
     req.flash("success", "Product deleted successfully");
     return res.redirect("/owners/admin");
+
 
   } catch (err){
     req.flash("error", "Failed to delete the product");
