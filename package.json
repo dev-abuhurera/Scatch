@@ -56,10 +56,16 @@
   "cloudinary": "^2.8.0",
   
     
+  "compression": "^1.8.1",
+  
+    
   "config": "^3.3.12",
   
     
   "connect-flash": "^0.1.1",
+  
+    
+  "connect-mongo": "^6.0.0",
   
     
   "cookie-parser": "^1.4.7",
@@ -78,6 +84,9 @@
   
     
   "express-session": "^1.18.2",
+  
+    
+  "helmet": "^8.1.0",
   
     
   "jsonwebtoken": "^9.0.3",
