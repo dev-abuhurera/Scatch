@@ -1,5 +1,6 @@
 const userModel = require('../models/user-model'); 
 const cloudinary = require('../config/cloudinary-config');
+const imageId = require('../utils/idExtraction');
 
 // Now first of all we will get the account page 
 
@@ -89,6 +90,8 @@ module.exports.updateAccount = async(req, res) => {
 module.exports.uploadProfilePicture = async (req, res) => {
 
     try{
+
+    
 
     const user = await userModel.findOne({email: req.user.email });
 
