@@ -28,14 +28,6 @@ app.use(helmet({
 // Compression
 app.use(compression());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("✅ Connected to MongoDB"))
-    .catch((err) => {
-        console.error("❌ MongoDB connection error:", err);
-        process.exit(1);
-    });
-
 const ownersRouter = require("./routes/ownersRouter");
 const usersRouter = require("./routes/usersRouter");
 const productsRouter = require("./routes/productsRouter");
@@ -101,7 +93,16 @@ app.use((err, req, res, next) => {
     res.status(500).redirect('/');
 });
 
-app.listen(port, () => {
-    console.log(`🚀 Server running on port ${port}`);
-    console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
-});
+// MongoDB Connection and Server Start
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log("✅ Connected to MongoDB");
+        app.listen(port, () => {
+            console.log(`🚀 Server running on port ${port}`);
+            console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+        });
+    })
+    .catch((err) => {
+        console.error("❌ MongoDB connection error:", err);
+        process.exit(1);
+    });
