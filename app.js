@@ -36,11 +36,13 @@ const orderRouter = require("./routes/orderRouter");
 const accountRouter = require("./routes/accountRouter");
 
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // Session configuration with MongoDB store
 app.use(expressSession({
+
     resave: false,
     saveUninitialized: false,
     secret: process.env.EXPRESS_SESSION_SECRET,
@@ -56,15 +58,18 @@ app.use(expressSession({
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
+
 }));
 
 app.use(flash());
 
 // Flash message middleware
 app.use((req, res, next) => {
+
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
     next();
+
 });
 
 app.use(express.static(path.join(__dirname, "public")));
@@ -80,17 +85,21 @@ app.use("/", orderRouter);
 
 // 404 handler
 app.use((req, res) => {
+
     res.status(404).render('404', { 
         error: req.flash("error"),
         success: req.flash("success")
     });
+
 });
 
 // Error handling middleware
 app.use((err, req, res, next) => {
+
     console.error("Error:", err.stack);
     req.flash('error', 'Something went wrong!');
     res.status(500).redirect('/');
+    
 });
 
 // MongoDB Connection and Server Start
@@ -98,11 +107,11 @@ mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
         console.log("✅ Connected to MongoDB");
         app.listen(port, () => {
-            console.log(`🚀 Server running on port ${port}`);
-            console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+            console.log(` Server running on port ${port}`);
+            console.log(` Environment: ${process.env.NODE_ENV || 'development'}`);
         });
     })
     .catch((err) => {
-        console.error("❌ MongoDB connection error:", err);
+        console.error("MongoDB connection error:", err);
         process.exit(1);
     });

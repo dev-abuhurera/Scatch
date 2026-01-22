@@ -21,12 +21,54 @@ router.get("/", function (req, res) {
 
 router.get("/shop", isLoggedIn, async function (req, res) {
 
-    let products = await productModel.find();
+    const { sortby, collection, discounted } = req.query;
+
+    // Build the filter object 
+
+    let filter = {};
+
+    if(collection === 'new'){
+      filter.isNew = true;
+    }
+
+    if(discounted === 'true'){
+      filter.discount = true;
+    }
+
+    // sort objects 
+
+    let sort = {};
+
+    switch(sortby){
+
+      case 'newest':
+        sort = { createdAt: -1 };
+        break;
+      case 'price-low':
+        sort = { price: 1 };
+        break;
+      case 'price-high':
+        sort = { price: -1 };
+        break;
+      default:
+        sort = { popularity: -1 };
+
+    }
+
+    let products = await productModel.find(filter).sort(sort);
+
     let success = req.flash("success");
     let error = req.flash("error");
-    res.render("shop", { products, 
+    res.render("shop", { 
+    products, 
     isAdmin: req.session.user ? req.session.user.isAdmin : false, 
-    success, error});
+    success, 
+    error,
+    sortby,
+    collection,
+    discounted
+
+  });
 
 });
 
