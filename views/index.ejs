@@ -11,50 +11,53 @@
 <div class="w-full min-h-screen flex lg:flex-row flex-col">
 
     <!-- Register Section -->
-    <div class="w-full lg:w-1/2 flex items-center justify-center min-h-screen lg:h-screen bg-zinc-100 py-12 lg:py-0">
+    <div class="w-full lg:w-1/2 flex items-center justify-center min-h-screen lg:min-h-screen bg-zinc-100 py-12 lg:py-16 px-6">
 
-        <div class="w-full lg:w-1/2 px-6 sm:px-12 md:px-20 lg:px-32 max-w-xl lg:max-w-none">
+        <div class="w-full max-w-md">
 
-            <h3 class="text-3xl sm:text-3xl md:text-4xl mb-2">Welcome to <span class="text-blue-400 font-bold">Scatch</span></h3>
-            <h4 class="text-xl sm:text-2xl mb-5">Create your account</h4>
+            <h3 class="text-3xl sm:text-4xl mb-2">Welcome to <span class="text-blue-500 font-bold">Scatch</span></h3>
+            <h4 class="text-xl sm:text-2xl mb-8 text-gray-700">Create your account</h4>
 
-            <form autocomplete="off" action="/users/register" method="post">
+            <form autocomplete="off" action="/users/register" method="post" class="space-y-4">
                 <input
-                    class="bg-white block w-full px-3 py-2 sm:py-3 border-[1px] rounded-md mb-3 border-zinc-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="bg-white block w-full px-4 py-3 border-[1px] rounded-lg border-zinc-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     type="text" placeholder="Full Name" name="fullname" required>
                 <input
-                    class="bg-white block w-full px-3 py-2 sm:py-3 border-[1px] rounded-md mb-3 border-zinc-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="bg-white block w-full px-4 py-3 border-[1px] rounded-lg border-zinc-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     type="email" placeholder="Email" name="email" required>
                 <input
-                    class="bg-white block w-full px-3 py-2 sm:py-3 border-[1px] rounded-md mb-3 border-zinc-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="bg-white block w-full px-4 py-3 border-[1px] rounded-lg border-zinc-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     type="password" placeholder="Password" name="password" required>
-                <input class="w-full sm:w-auto px-5 sm:px-8 rounded-full py-3 mt-2 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer transition-colors text-sm sm:text-base" 
+                <input class="w-full px-8 rounded-lg py-3 mt-2 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer transition-colors text-base font-medium" 
                     type="submit" value="Create My Account">
             </form>
 
-            <p class="mt-4 text-sm lg:hidden text-gray-600">Already have an account? <a href="#login" class="text-blue-500 hover:underline lg:hidden">Login</a></p>
+            <p class="mt-6 text-sm lg:hidden text-gray-600 text-center">Already have an account? <a href="#login" class="text-blue-500 hover:underline font-medium">Login</a></p>
         
         </div>
         
     </div>
     
     <!-- Login Section -->
-    <div id="login" class="w-full lg:w-1/2 flex items-center justify-center min-h-screen lg:h-screen py-12 lg:py-0">
+    <div id="login" class="w-full lg:w-1/2 flex items-center justify-center min-h-screen lg:min-h-screen py-12 lg:py-16 px-6">
         
-        <div class=" w-full lg:w-1/2 px-6 sm:px-12 md:px-20 lg:px-32 max-w-xl lg:max-w-none">
+        <div class="w-full max-w-md">
 
-            <h4 class="text-2xl   mb-5">Login to your account</h4>
-            <form autocomplete="off" action="/users/login" method="post">
+            <h4 class="text-3xl sm:text-4xl mb-2 font-semibold">Login to your account</h4>
+            <p class="text-lg text-gray-600 mb-8">Welcome back! Please enter your details</p>
+
+            <form autocomplete="off" action="/users/login" method="post" class="space-y-4">
                 <input
-                    class="block bg-white w-full px-3 py-2 sm:py-3 border-[1px] rounded-md mb-3 border-zinc-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="block bg-white w-full px-4 py-3 border-[1px] rounded-lg border-zinc-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     type="email" placeholder="Email" name="email" required>
                 <input
-                    class="block bg-white w-full px-3 py-2 sm:py-3 border-[1px] rounded-md mb-3 border-zinc-200 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    class="block bg-white w-full px-4 py-3 border-[1px] rounded-lg border-zinc-300 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     type="password" placeholder="Password" name="password" required>
-                <input class="w-full sm:w-auto px-5 sm:px-8 block rounded-full py-3 mt-2 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer transition-colors text-sm sm:text-base" 
+                <input class="w-full px-8 block rounded-lg py-3 mt-2 bg-blue-500 hover:bg-blue-600 text-white cursor-pointer transition-colors text-base font-medium" 
                     type="submit" value="Login">
             </form>
-            <p class="mt-4 text-sm lg:hidden text-gray-600">Don't have an account? <a href="#" class="text-blue-500 hover:underline" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Sign up above</a></p>
+
+            <p class="mt-6 text-sm lg:hidden text-gray-600 text-center">Don't have an account? <a href="#" class="text-blue-500 hover:underline font-medium" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">Sign up</a></p>
         </div>
 
     </div>
