@@ -116,7 +116,7 @@ This project demonstrates:
 
 ## Deployment
 
-**Live Demo:** [Deployed on Railway](https://scatch-bag-store-production.up.railway.app/)
+**Live Demo:** [Deployed on Vercel](https://scatch-bag-store-fwws.vercel.app/)
 
 This application is deployed on **Railway** for its simplicity, developer-friendly experience, and seamless MongoDB integration.
 
